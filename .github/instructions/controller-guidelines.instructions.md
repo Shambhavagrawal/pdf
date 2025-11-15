@@ -122,6 +122,7 @@ public ResponseEntity<ResourceDTO> createResource(
 
 ## Important Notes
 - **Javadoc is mandatory**: Every controller method must have Javadoc describing its purpose. These comments are automatically introspected and included in OpenAPI specifications via `therapi-runtime-javadoc`
+- **Do not set `@Operation.description`**: Rely on the method Javadoc for the operation description. Only set `@Operation(summary = "...")`. This prevents duplication and ensures a single source of truth in OpenAPI.
 - **Use @Parameter for all parameters**: Even simple parameters should be documented with descriptions
 - **Content schema in responses**: Always include `content = @Content(schema = @Schema(implementation = YourDTO.class))` in `@ApiResponse` annotations
 - **Keep descriptions concise**: Summaries should be 1-2 sentences; use description for longer explanations

@@ -34,7 +34,9 @@ mvnw.cmd clean package
 # 2. Run tests (executes in ~15s)
 mvnw.cmd test
 
-# 3. Start application (starts in ~8s on port 8081)
+# 3. Stop any previous Java instance, then start app (port 8081)
+# Tip: Enable shell integration in VS Code terminal for better command detection
+Get-Process | Where-Object {$_.ProcessName -like "*java*"} | Stop-Process -Force
 mvnw.cmd spring-boot:run
 
 # 4. Verify OpenAPI documentation
@@ -43,7 +45,11 @@ mvnw.cmd spring-boot:run
 ```
 
 ### Common Build Issues & Solutions
-- **Port 8081 occupied**: Change `server.port` in `application.properties`
+- **Port 8081 occupied**: First stop any running Java processes
+  ```powershell
+  Get-Process | Where-Object {$_.ProcessName -like "*java*"} | Stop-Process -Force
+  ```
+  If still needed, change `server.port` in `application.properties`.
 - **Maven wrapper fails**: Run `mvn wrapper:wrapper` first
 - **Javadoc not appearing in OpenAPI**: Recompile after Javadoc changes - `therapi-runtime-javadoc` processes annotations at compile-time
 - **Tests fail**: Ensure no other instance is running on port 8081
