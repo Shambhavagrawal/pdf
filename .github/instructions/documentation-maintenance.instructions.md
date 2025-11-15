@@ -180,5 +180,14 @@ This file itself should be updated when:
 - New types of changes require different update strategies
 - The update process itself needs improvement
 
-**Last updated**: 2025-11-15 (Initial creation)
-**Next review**: When major GitHub Copilot guideline changes are published
+### Alignment with GitHub Copilot Guidelines
+On each scheduled review (at least once per release cycle) or when GitHub Copilot publishes significant guideline updates:
+1. Retrieve latest Copilot documentation/best-practice summary.
+2. Diff against this file and `.github/copilot-instructions.md` focusing on: update cadence, mandatory pattern wording, length/structure recommendations, and agent workflow steps.
+3. Apply divergences where they improve clarity or enforcement; avoid adopting suggestions that conflict with project-specific constraints.
+4. Update the "Last updated" and set a new "Next review" date.
+5. Re-run `mvnw.cmd clean package` to regenerate Javadoc metadata if any endpoint/pattern examples changed.
+
+Record below:
+**Last updated**: 2025-11-15 (Initial creation; Copilot alignment added)
+**Next review**: 2025-12-31 (or sooner upon major Copilot update)

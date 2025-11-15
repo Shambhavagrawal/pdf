@@ -78,6 +78,7 @@ com.example.pdf.config      → Spring configuration
   2. Start app and verify Swagger UI at `http://localhost:8081/swagger-ui.html`
   3. Check Javadoc compilation: `target/classes/**/*__Javadoc.json` files should exist
   4. Verify no compilation warnings
+  5. If API endpoints, dependencies, or structure changed: update related docs & `.github/instructions/documentation-maintenance.instructions.md` per Documentation Maintenance section
 
 ## Important Dependencies Behavior
 - **therapi-runtime-javadoc**: Extracts Javadoc at compile-time → changes require recompilation
@@ -119,3 +120,22 @@ When the project structure or conventions change:
 3. Document new dependencies or build steps with exact commands
 4. Add new common errors and solutions as discovered
 5. Keep instructions under 2 pages - move detailed examples to path-specific files
+
+### Documentation Maintenance
+Refer to `.github/instructions/documentation-maintenance.instructions.md` whenever you:
+- Add or modify REST endpoints (controllers, DTOs, tags)
+- Introduce new modules, packages, or configuration classes
+- Add or change build/dependency steps in `pom.xml`
+- Alter error handling patterns or response schemas
+
+Required actions in the same commit:
+1. Update `README.md` / help guides with new endpoints or features.
+2. Adjust instruction files in `.github/instructions/` if conventions shift.
+3. Re-run `mvnw.cmd clean package` to regenerate Javadoc metadata.
+4. Verify Swagger UI reflects changes (`http://localhost:8081/swagger-ui.html`).
+5. Confirm new or changed DTOs have `@Schema` and validation annotations.
+
+Skip this section only for pure internal refactors that do not change public API, dependencies, or documented behavior.
+
+#### Alignment with Latest Copilot Guidance
+At least once per release cycle (or when prompted by significant GitHub Copilot guideline updates), compare the current `.github/instructions/documentation-maintenance.instructions.md` and this file against the latest published Copilot recommendations. Update terminology, process steps, and checklists where they diverge. Record date of review in the maintenance file's metadata (Last updated / Next review).
